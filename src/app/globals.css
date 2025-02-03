@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --data-color: #A855F7;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,4 +19,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-gradient {
+  --custom-color: var(--data-color, #000);
+  background: linear-gradient(to right, transparent, var(--custom-color));
+  box-shadow: 0 0 12px 1px var(--custom-color);
 }
