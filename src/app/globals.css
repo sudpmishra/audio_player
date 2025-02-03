@@ -23,6 +23,6 @@ body {
 
 .custom-gradient {
   --custom-color: var(--data-color, #000);
-  background: linear-gradient(to right,var(--custom-color), transparent);
+  background: linear-gradient(to right, transparent, var(--custom-color));
   box-shadow: 0 0 12px 1px var(--custom-color);
 }
