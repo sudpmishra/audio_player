@@ -7,6 +7,7 @@ export type Track = {
     cover: string;
     plays: string;
     lyrics: string;
+    likes?: string;
 };
 const sampleLyrics = `(Verse 1)
 Drifting like a shadow in the midnight glow,
@@ -65,6 +66,7 @@ const tracks: Track[] = [
         cover: '/album-art/album-art-1.png',
         plays: '1.2M',
         lyrics: convertedLyricsToHtml,
+        likes: '1.2K',
     },
     {
         id: '2',
@@ -75,6 +77,7 @@ const tracks: Track[] = [
         cover: '/album-art/album-art-2.png',
         plays: '1.7M',
         lyrics: convertedLyricsToHtml,
+        likes: '2.3K',
     },
     {
         id: '3',
@@ -85,6 +88,7 @@ const tracks: Track[] = [
         cover: '/album-art/album-art-3.png',
         plays: '2.3B',
         lyrics: convertedLyricsToHtml,
+        likes: '3.4K',
     },
     {
         id: '4',
@@ -95,6 +99,7 @@ const tracks: Track[] = [
         cover: '/album-art/album-art-4.png',
         plays: '5.7M',
         lyrics: convertedLyricsToHtml,
+        likes: '4.6K',
     },
     {
         id: '5',
@@ -105,6 +110,7 @@ const tracks: Track[] = [
         cover: '/album-art/album-art-5.png',
         plays: '1.2B',
         lyrics: convertedLyricsToHtml,
+        likes: '5.7K',
     },
     {
         id: '6',
@@ -115,6 +121,7 @@ const tracks: Track[] = [
         cover: '/album-art/album-art-6.png',
         plays: '3.6M',
         lyrics: convertedLyricsToHtml,
+        likes: '6.8K',
     }
 ];
 export default tracks;

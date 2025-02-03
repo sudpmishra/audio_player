@@ -169,7 +169,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 trackId={currentTrack.id}
               />
               <TrackDetails currentTrack={currentTrack} showLyrics={showLyrics} />
-              <MoreOptions trackId={currentTrack.id} favouriteTrack={favouriteTrack} setShowLyrics={setShowLyrics} showLyrics={showLyrics} />
+              <MoreOptions track={currentTrack} favouriteTrack={favouriteTrack} setShowLyrics={setShowLyrics} showLyrics={showLyrics} />
             </div>
             <audio
               ref={audioRef}
