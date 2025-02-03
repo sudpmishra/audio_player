@@ -61,6 +61,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     e.stopPropagation();
     audioRef.current?.pause();
     isPlaying && setIsPlaying(false);
+    setCurrentTrack(tracks[0])
     setIsVisible(false);
   };
 
