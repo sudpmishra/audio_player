@@ -7,8 +7,49 @@ export type Track = {
     cover: string;
     plays: string;
     lyrics: string;
+    isFavorite?: boolean;
 };
-const sampleLyrics = `I got a lot of money, I'ma run through it`;
+const sampleLyrics = `
+(Verse 1)
+Drifting like a shadow in the midnight glow,
+Chasing every whisper where the cold winds blow.
+Memories like echoes, fading in the sky,
+Trying to hold on, but I don’t know why.
+
+(Pre-Chorus)
+Every step I take, I'm running in reverse,
+Caught inside a dream, but it only makes it worse.
+If I call your name, will it reach your soul?
+Or am I just a ghost in a world so cold?
+
+(Chorus)
+I'm lost in the echo of the words unsaid,
+Trying to rewrite all the things I regret.
+If time could rewind, would we meet again?
+Or are we just strangers at the story’s end?
+
+(Verse 2)
+Footsteps in the silence, leading me astray,
+Dancing with the past like it’s begging me to stay.
+But I keep moving forward, through the fire and rain,
+Learning how to love through the fear and pain.
+
+(Bridge)
+Let the stars burn bright in the endless night,
+Let the waves crash down, let me feel alive.
+Even if I fall, I will rise once more,
+'Cause the heart still beats where the echoes roar.
+
+(Chorus - Repeat)
+I'm lost in the echo of the words unsaid,
+Trying to rewrite all the things I regret.
+If time could rewind, would we meet again?
+Or are we just strangers at the story’s end?
+
+(Outro)
+Maybe in another life, we’ll get it right,
+Till then, I’ll keep chasing the fading light...
+`
 const tracks: Track[] = [
     {
         id: '1',
