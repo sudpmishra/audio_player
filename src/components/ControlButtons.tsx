@@ -1,12 +1,14 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { FaBackwardStep, FaForwardStep, FaPause, FaPlay } from "react-icons/fa6";
-import { motion, AnimatePresence } from "framer-motion";
 
-const ControlButtons: React.FC<{
+type ControlButtonsProps = {
     isPlaying: boolean;
     togglePlay: () => void;
     setNewTrack: (trackId: 'PREV' | 'NEXT') => void;
     trackId: string;
-}> = ({ isPlaying, togglePlay, setNewTrack, trackId }) => (
+};
+
+const ControlButtons: React.FC<ControlButtonsProps> = ({ isPlaying, togglePlay, setNewTrack, trackId }) => (
     <div className="flex items-center gap-2">
         <FaBackwardStep
             className="w-6 h-6 cursor-pointer text-gray-300"

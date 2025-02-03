@@ -1,11 +1,13 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-const SeekBar: React.FC<{
+type SeekBarProps = {
     seekPosition: number;
     handleSeekBarClick: (e: React.MouseEvent<HTMLDivElement>) => void;
     pauseTrack: () => void;
     playTrack: () => void;
-}> = ({ seekPosition, handleSeekBarClick, pauseTrack, playTrack }) => {
+};
+
+const SeekBar: React.FC<SeekBarProps> = ({ seekPosition, handleSeekBarClick, pauseTrack, playTrack }) => {
     const parentRef = useRef<HTMLDivElement>(null);
     const seekerRef = useRef<HTMLDivElement>(null);
 
