@@ -60,7 +60,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const closePlayer = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     audioRef.current?.pause();
-    isPlaying && setIsPlaying(false);
+    if (isPlaying) {
+      setIsPlaying(false);
+    }
     setCurrentTrack(tracks[0])
     setIsVisible(false);
   };
