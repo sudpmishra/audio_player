@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 type SeekBarProps = {
     seekPosition: number;
@@ -10,6 +10,10 @@ type SeekBarProps = {
 const SeekBar: React.FC<SeekBarProps> = ({ seekPosition, handleSeekBarClick, pauseTrack, playTrack }) => {
     const parentRef = useRef<HTMLDivElement>(null);
     const seekerRef = useRef<HTMLDivElement>(null);
+    const [hoveredTime, setHoveredTime] = useState({
+        hoveredTime: '00:00',
+        left: 0,
+    });
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -26,7 +30,7 @@ const SeekBar: React.FC<SeekBarProps> = ({ seekPosition, handleSeekBarClick, pau
             document.removeEventListener('mouseup', handleMouseUp);
         };
 
-        const handleMouseDown = (e: MouseEvent) => {
+        const handleMouseDown = () => {
             pauseTrack();
             document.addEventListener('mousemove', handleMouseMove);
             document.addEventListener('mouseup', handleMouseUp);
@@ -43,10 +47,34 @@ const SeekBar: React.FC<SeekBarProps> = ({ seekPosition, handleSeekBarClick, pau
         };
     }, []);
 
+    const currentSongTime = useMemo(() => {
+        const minutes = Math.floor(seekPosition / 60);
+        const seconds = Math.floor(seekPosition % 60);
+        return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+    }, [seekPosition]);
+
+    const calculateHoveredTime = (e: React.MouseEvent<HTMLDivElement>) => {
+        const { left, width } = parentRef.current!.getBoundingClientRect();
+        const seek = (e.clientX - left) / width;
+        const totalDuration = 100; // total duration in seconds (1:40)
+
+        const hoveredSeconds = Math.floor(seek * totalDuration);
+        const minutes = Math.floor(hoveredSeconds / 60);
+        const seconds = hoveredSeconds % 60;
+
+        const time = `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+        setHoveredTime({
+            hoveredTime: time,
+            left: seek * 100,
+        });
+    };
+
+
     return (
         <div
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[95%] h-[1rem] bg-transparent rounded-full cursor-pointer"
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[95%] h-[1rem] bg-transparent rounded-full cursor-pointer group/seek"
             onClick={handleSeekBarClick}
+            onMouseMoveCapture={calculateHoveredTime}
             id="seek-bar"
             ref={parentRef}
         >
@@ -57,6 +85,20 @@ const SeekBar: React.FC<SeekBarProps> = ({ seekPosition, handleSeekBarClick, pau
                     transition: "width 0.1s linear",
                 }}
             />
+            <span className="absolute top-[-1.5rem] text-white text-xs hidden group-hover:block p-1 bg-gray-800 rounded-lg shadow-lg"
+                style={{ left: `${seekPosition}%`, transform: "translateX(-50%)" }}
+            >
+                <span>
+                    {currentSongTime}
+                </span>
+            </span>
+            <span className="absolute top-[-1.5rem] text-white text-xs hidden group-hover/seek:block p-1 bg-gray-800 rounded-lg shadow-lg"
+                style={{ left: `${hoveredTime.left}%`, transform: "translateX(-50%)" }}
+            >
+                <span>
+                    {hoveredTime.hoveredTime}
+                </span>
+            </span>
             <div
                 id="seeker"
                 ref={seekerRef}
